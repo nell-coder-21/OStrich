@@ -1,0 +1,380 @@
+/* ============================
+   GLOBAL RESET & BASE STYLES
+============================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* ============================
+   BACKGROUND & THEME
+============================ */
+body {
+  position: relative;
+  color: #eae6ff;
+  background: radial-gradient(circle at 20% 20%, rgba(166, 85, 255, 0.2), transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(255, 60, 190, 0.15), transparent 50%),
+              linear-gradient(180deg, #0a0b0f 0%, #12121a 100%);
+  display: block;
+  padding: 2rem;
+  min-height: 100%;
+  padding-bottom: 120px;
+}
+
+/* Extended gradient fix for long pages */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: radial-gradient(circle at 20% 20%, rgba(166, 85, 255, 0.2), transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(255, 60, 190, 0.15), transparent 50%),
+              linear-gradient(180deg, #0a0b0f 0%, #12121a 100%);
+  z-index: -1;
+}
+
+/* Page fade-in animation */
+body.fade {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================
+   CONTAINERS & LAYOUT
+============================ */
+.center-stage {
+  width: 100%;
+  max-width: 1400px; /* Increased Max Width for Presentation View */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.15); /* Thicker Border */
+  border-radius: 1.5rem; /* Increased Border Radius */
+  backdrop-filter: blur(15px); /* Increased Blur */
+  padding: 3rem; /* Increased Padding */
+  box-shadow: 0 0 60px rgba(150, 60, 255, 0.2); /* Bolder Shadow */
+  width: 100%;
+}
+
+/* ============================
+   HEADINGS & TEXT
+============================ */
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+
+h1 {
+  font-size: 2.5rem; /* Slightly Increased Font Size */
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.7rem; /* Slightly Increased Font Size */
+  margin-bottom: 0.8rem;
+  color: #d7b3ff;
+}
+
+p {
+  color: #d4cef8;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1.1rem; /* Slightly Increased Font Size */
+}
+
+/* ============================
+   LISTS
+============================ */
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+li {
+  background: rgba(150, 80, 255, 0.08);
+  border-radius: 0.8rem;
+  padding: 0.9rem 1.2rem;
+  color: #e9e3ff;
+  font-size: 1.05rem; /* Slightly Increased Font Size */
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+li:hover {
+  background: rgba(255, 90, 220, 0.15);
+  transform: translateX(5px);
+}
+
+/* ============================
+   BUTTONS
+============================ */
+.btn {
+  display: inline-block;
+  padding: 1rem 1.8rem; /* Increased Padding */
+  border-radius: 1rem; /* Increased Border Radius */
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  font-size: 1.1rem; /* Increased Font Size */
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #a14bff, #ff2bb3);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(200, 80, 255, 0.4); /* Bolder Shadow */
+}
+
+.btn.primary:hover {
+  box-shadow: 0 0 40px rgba(200, 80, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+.btn.ghost {
+  border: 2px solid rgba(200, 160, 255, 0.6); /* Thicker Border */
+  color: #cdbdff;
+}
+
+.btn.ghost:hover {
+  background: rgba(200, 160, 255, 0.15);
+}
+
+/* Navigation (used in index & d.html) */
+.navigation,
+.cta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem; /* Increased Margin */
+  flex-wrap: wrap;
+}
+
+/* ============================
+   IMAGES / PLACEHOLDERS
+============================ */
+.img-claim,
+.image-placeholder {
+  width: 100%;
+  border-radius: 16px; /* Increased Border Radius */
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 0 35px rgba(180, 90, 255, 0.35);
+  background: linear-gradient(135deg, rgba(180, 90, 255, 0.25), rgba(255, 60, 200, 0.15));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-claim img,
+.image-placeholder img {
+  width: 100%;
+  height: 420px; /* Increased Image Height */
+  object-fit: cover;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+.image-placeholder:hover img,
+.img-claim:hover img {
+  transform: scale(1.05);
+}
+
+/* ============================
+   d.html - HORIZONTAL FEATURE LAYOUT
+============================ */
+.center-stage {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 2rem 3rem;
+  box-sizing: border-box;
+}
+
+.glass-card.slides {
+  width: 100%;
+  max-width: 1600px; /* Increased Max Width for Slides Card */
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.15); /* Thicker Border */
+  border-radius: 24px; /* Increased Border Radius */
+  padding: 3rem; /* Increased Padding */
+  backdrop-filter: blur(18px); /* Increased Blur */
+  box-shadow: 0 0 70px rgba(150, 60, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.slides-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 2rem; /* Increased Gap */
+  padding: 1.5rem 0 2rem 0; /* Increased Padding */
+  width: 100%;
+}
+
+.slide {
+  flex: 0 0 380px; /* Increased Slide Width */
+  scroll-snap-align: start;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px; /* Increased Border Radius */
+  padding: 2rem; /* Increased Padding */
+  box-shadow: 0 0 40px rgba(160, 50, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slide:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 50px rgba(190, 90, 255, 0.4);
+}
+
+.slides-grid::-webkit-scrollbar {
+  height: 10px;
+}
+
+.slides-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #a14bff, #ff2bb3);
+  border-radius: 10px;
+}
+
+/* Fading edge gradient for holographic effect */
+.slides {
+  position: relative;
+}
+
+.slides::before,
+.slides::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.slides::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(10,10,15,1), rgba(10,10,15,0));
+}
+
+.slides::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(10,10,15,1), rgba(10,10,15,0));
+}
+
+/* ============================
+   THANK YOU PAGE / FOOTER
+============================ */
+.thankyou .lead {
+  text-align: center;
+  font-size: 1.5rem; /* Increased Font Size */
+  color: #dfd5ff;
+  margin-bottom: 1.5rem;
+}
+
+.presenters {
+  text-align: center;
+}
+
+.names {
+  font-weight: 600;
+  color: #cbb7ff;
+  font-size: 1.1rem; /* Increased Font Size */
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+============================ */
+@media (max-width: 900px) {
+  body {
+    padding: 1.5rem;
+  }
+
+  .glass-card {
+    padding: 2rem;
+  }
+
+  .image-placeholder img,
+  .img-claim img {
+    height: 300px;
+  }
+
+  .cta-row,
+  .navigation {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .slides-grid {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .slide {
+    flex: 1;
+    width: 100%;
+  }
+
+  .slides::before,
+  .slides::after {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  li {
+    font-size: 1rem;
+  }
+}
